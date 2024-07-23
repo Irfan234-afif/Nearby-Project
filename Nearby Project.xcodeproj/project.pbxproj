@@ -23,6 +23,8 @@
 		EBAC5C0A2B7E26A1001DA837 /* Nearby_ProjectUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC5C092B7E26A1001DA837 /* Nearby_ProjectUITestsLaunchTests.swift */; };
 		EBAC5CAD2B7E3353001DA837 /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBAC5CAC2B7E3353001DA837 /* ServiceManager.swift */; };
 		EBAC5CAF2B7E3404001DA837 /* NearbyConnections in Frameworks */ = {isa = PBXBuildFile; productRef = EBAC5CAE2B7E3404001DA837 /* NearbyConnections */; };
+		EBC39B9B2C4E94AB0007AE94 /* PopupWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC39B9A2C4E94AB0007AE94 /* PopupWindowController.swift */; };
+		EBC39B9D2C4E95FD0007AE94 /* PopupContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBC39B9C2C4E95FD0007AE94 /* PopupContentView.swift */; };
 		EBED97C02B7EA73500245DBD /* DiscoverDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBED97BF2B7EA73400245DBD /* DiscoverDevice.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +78,9 @@
 		EBAC5C092B7E26A1001DA837 /* Nearby_ProjectUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Nearby_ProjectUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		EBAC5C592B7E2816001DA837 /* NearbyServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NearbyServiceManager.swift; sourceTree = "<group>"; };
 		EBAC5CAC2B7E3353001DA837 /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
+		EBB0C61B2C4D63A200DE5B11 /* Nearby-Project-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = "Nearby-Project-Info.plist"; sourceTree = SOURCE_ROOT; };
+		EBC39B9A2C4E94AB0007AE94 /* PopupWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupWindowController.swift; sourceTree = "<group>"; };
+		EBC39B9C2C4E95FD0007AE94 /* PopupContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupContentView.swift; sourceTree = "<group>"; };
 		EBED97BF2B7EA73400245DBD /* DiscoverDevice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverDevice.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -110,6 +115,8 @@
 			isa = PBXGroup;
 			children = (
 				EB45DDB32B81D64B00D9B6B0 /* DiscoverView.swift */,
+				EBC39B9A2C4E94AB0007AE94 /* PopupWindowController.swift */,
+				EBC39B9C2C4E95FD0007AE94 /* PopupContentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -147,6 +154,7 @@
 		EBAC5BEA2B7E269E001DA837 /* Nearby Project */ = {
 			isa = PBXGroup;
 			children = (
+				EBB0C61B2C4D63A200DE5B11 /* Nearby-Project-Info.plist */,
 				EB45DDB22B81D63400D9B6B0 /* View */,
 				EB545BA22B7FBC3900A58B80 /* Model */,
 				EBAC5BEB2B7E269E001DA837 /* Nearby_ProjectApp.swift */,
@@ -346,7 +354,9 @@
 				EBAC5BEE2B7E269E001DA837 /* ContentView.swift in Sources */,
 				EB545B302B7F181300A58B80 /* Payload.swift in Sources */,
 				EB545BA42B7FBC5E00A58B80 /* PhoneStatus.swift in Sources */,
+				EBC39B9D2C4E95FD0007AE94 /* PopupContentView.swift in Sources */,
 				EB45DDB12B81D42B00D9B6B0 /* AppDelegate.swift in Sources */,
+				EBC39B9B2C4E94AB0007AE94 /* PopupWindowController.swift in Sources */,
 				EBAC5BEC2B7E269E001DA837 /* Nearby_ProjectApp.swift in Sources */,
 				EBED97C02B7EA73500245DBD /* DiscoverDevice.swift in Sources */,
 				EBAC5CAD2B7E3353001DA837 /* ServiceManager.swift in Sources */,
@@ -514,6 +524,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Nearby Project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nearby-Project-Info.plist";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Need to Discover";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Need to acces Bluetooth to Discover";
@@ -554,6 +565,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Nearby Project/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Nearby-Project-Info.plist";
 				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Need to Discover";
 				INFOPLIST_KEY_NSBluetoothPeripheralUsageDescription = "Need to acces Bluetooth to Discover";

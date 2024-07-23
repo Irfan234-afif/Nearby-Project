@@ -18,13 +18,13 @@ struct PhoneStatus: Decodable {
     var battery_level : String?
     var batteryIcon : String?
     var isCharging : Bool?
-    var signalLength : Int?
+    var signalLength : Double?
     func copyWith(endpointID: String? = nil,
                       endpointName: String? = nil,
                       battery_level: String? = nil,
                       batteryIcon: String? = nil,
                       isCharging: Bool? = nil,
-                  signalLength: Int? = nil) -> PhoneStatus {
+                  signalLength: Double? = nil) -> PhoneStatus {
             return PhoneStatus(
                 kind: kind,
                 endpointID: endpointID ?? self.endpointID,

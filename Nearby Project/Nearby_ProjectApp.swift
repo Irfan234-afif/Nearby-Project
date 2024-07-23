@@ -20,6 +20,7 @@ struct Nearby_ProjectApp: App {
     @State var isDiscover : Bool = false;
     @State var isAdvertiser : Bool = false;
     @State var isMenuPresented: Bool = false
+    @State private var showActionSheet = false
     
     
     
@@ -40,7 +41,7 @@ struct Nearby_ProjectApp: App {
         }).menuBarExtraStyle(WindowMenuBarExtraStyle())
         //
         MenuBarExtra(content: {
-            PhoneView().environmentObject(manager).introspectMenuBarExtraWindow{window in
+            PhoneView(isPopOver: $showActionSheet).environmentObject(manager).introspectMenuBarExtraWindow{window in
                 window.animationBehavior = .alertPanel
             }
         }, label: {
@@ -55,41 +56,55 @@ struct Nearby_ProjectApp: App {
     
     struct PhoneView:View {
         @EnvironmentObject var manager:ServiceManager;
+        @Binding var isPopOver: Bool
+        
+        @State var isChoosingFile = false;
         
         
         var body: some View {
             VStack(content: {
                 
-                
-                if(manager.phoneStatus == nil ){
-                    Text("No Device Connect")
-                }else{
-                    Divider()
-                    Image(systemName: "iphone.radiowaves.left.and.right").resizable().frame(width: 200, height: 150, alignment: Alignment.leading)
-                    HStack(spacing: 0){
-                        
-                        
-                        Image(systemName: "wifi", variableValue: abs(Double((manager.phoneStatus!.signalLength ?? 0) / 100)))
-                        
-                        Spacer().frame(width: 16)
-                        if(manager.phoneStatus?.isCharging ?? false ){
-                            Image(systemName: "bolt.fill").resizable().frame(width: 8, height: 10).foregroundColor(.green)
-                            Spacer().frame(width: 2)
-                        }
-                        
-                        Image(systemName: manager.phoneStatus?.batteryIcon ?? "battery.\(0)percent")
-                        
-                        
-                    }.padding(.all, 4)
-                    Divider()
-                    HStack(spacing: 2){
-                        Image(systemName: "circle.fill").foregroundColor(.green)
-                        Text("Device Connected : " + (manager.phoneStatus?.endpointName ?? "Unknown"))
+                //                if(manager.phoneStatus == nil ){
+                //                    Text("No Device Connect")
+                //                }else{
+                Divider()
+                Image(systemName: "iphone.radiowaves.left.and.right").resizable().frame(width: 200, height: 150, alignment: Alignment.leading)
+                HStack(spacing: 0){
+                    
+                    
+                    Image(systemName: "wifi", variableValue: manager.phoneStatus?.signalLength ?? 0)
+                    
+                    Spacer().frame(width: 16)
+                    if(manager.phoneStatus?.isCharging ?? false ){
+                        Image(systemName: "bolt.fill").resizable().frame(width: 8, height: 10).foregroundColor(.green)
+                        Spacer().frame(width: 2)
                     }
                     
+                    Image(systemName: manager.phoneStatus?.batteryIcon ?? "battery.\(0)percent")
                     
                     
+                }.padding(.all, 4)
+                Divider()
+                HStack(spacing: 2){
+                    Image(systemName: "circle.fill").foregroundColor(manager.phoneStatus != nil ? .green : .red)
+                    Text(manager.phoneStatus !=  nil ?"Device Connected : " + (manager.phoneStatus?.endpointName ?? "Unknown") : "Device Disconnected")
                 }
+                Button(action: {
+                    isChoosingFile.toggle()
+                    isPopOver.toggle()
+                    if isPopOver {
+                        let rootView = NSHostingView(rootView: PopupContentView()
+                                                .environmentObject(manager))
+                        let popupWindow = PopupWindowController(rootView: rootView)
+                        popupWindow.show()
+                    }
+                }, label: {
+                    Text("Send File")
+                })
+                
+                
+                
+                //                }
                 
             }).padding(.vertical, 30).padding(.horizontal, 8).frame(maxWidth: 300)
         }
@@ -181,6 +196,12 @@ struct Nearby_ProjectApp: App {
                                 manager.sendText(to: [item.endpointID], value: "Halo tes dari MacOs")
                             }label:{
                                 Text("Send")
+                            }
+                            Spacer()
+                            Button{
+                                manager.disconnectDevice(device: item)
+                            }label:{
+                                Text("Disconnect")
                             }
                         }
                     }

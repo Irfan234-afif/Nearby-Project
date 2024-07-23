@@ -20,4 +20,14 @@ struct Payload: Identifiable {
     enum Status {
         case inProgress(Progress), success, failure, canceled
     }
+    
+    // Properti computed untuk mengambil nilai Progress jika statusnya inProgress
+        var progressValue: Progress? {
+            switch status {
+            case .inProgress(let progress):
+                return progress
+            default:
+                return nil
+            }
+        }
 }
